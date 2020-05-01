@@ -10,7 +10,7 @@ import SayHBButton from '../SayHBButton';
 import ChangeAllTrafficLights from '../ChangeAllTrafficLights';
 import LoginForm from '../LoginForm';
 import AddPetOwner from '../AddPetOwner'
-
+import FetchPetOwners from '../FetchPetOwners'
 
 const { store, persistor } = configureStore();
 
@@ -24,6 +24,7 @@ const App = () => (
       <ChangeAllTrafficLights />
       <LoginForm />
       <AddPetOwner />
+      <FetchPetOwners />
     </PersistGate>
   </Provider>
 );
