@@ -1,57 +1,49 @@
-// import {
-//   call,
-//   takeEvery,
-//   put,
-//   // race,
-//   // all,
-//   delay,
-//   select,
-// } from 'redux-saga/effects';
+import {
+  call,
+  takeEvery,
+  put,
+  // race,
+  // all,
+  delay,
+  select,
+} from 'redux-saga/effects';
 
-// import * as selectors from '../reducers';
-// import * as actions from '../actions/trafficLights';
-// import * as types from '../types/trafficLights';
-
-
-// const API_BASE_URL = 'http://localhost:8000/api/v1';
+import * as selectors from '../reducers';
+import * as actions from '../actions/petOwners';
+import * as types from '../types/petOwners';
 
 
-// function* sayHappyBirthday(action) {
-//   const trafficLights = yield select(selectors.getTrafficLights);
+const API_BASE_URL = 'http://localhost:8000/api/v1';
 
-//   const response = yield call(
-//     fetch,
-//     `${API_BASE_URL}/token-auth/`,
-//     {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         username: 'douglas',
-//         password: 'doug',
-//       }),
-//       headers:{
-//         'Content-Type': 'application/json',
-//       },
-//     },
-//   );
+function* addPetOwner (action) {
+  try{ 
+    const isAuth = yield select(selectors.isAuthenticated);
+    if(isAuth){
+        const token = yield select(selectors.getAuthToken)
+        const response = yield call (
+        fetch,
+        `${API_BASE_URL}/owner/`,
+        {
+          method : 'POST',
+          body: JSON.stringify(action.payload),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : `JWT ${token}`
+          }
+        }
+        )
+        console.log(action.payload)
+        console.log(response)
+        console.log(JSON.stringify(action.payload))
+    }
+  }catch(error){
 
-//   const { token } = yield response.json();
-//   const hbResponse = yield call(
-//     fetch,
-//     `${API_BASE_URL}/pets/happy-bday/`,
-//     {
-//       method: 'POST',
-//       body: JSON.stringify({}),
-//       headers:{
-//         'Content-Type': 'application/json',
-//         'Authorization': `JWT ${token}`,
-//       },
-//     }
-//   );
-// }
+  }
+}
 
-// export function* watchTrafficLightCreation() {
-//   yield takeEvery(
-//     types.TRAFFIC_LIGHT_ADDED,
-//     sayHappyBirthday,
-//   );
-// }
+export function* watchAddPetOwner(){
+  yield takeEvery(
+    types.PET_OWNER_ADD_STARTED,
+    addPetOwner,
+  );
+}

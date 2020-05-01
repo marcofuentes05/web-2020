@@ -9,7 +9,7 @@ import LogoutButton from '../LogoutButton';
 import SayHBButton from '../SayHBButton';
 import ChangeAllTrafficLights from '../ChangeAllTrafficLights';
 import LoginForm from '../LoginForm';
-
+import AddPetOwner from '../AddPetOwner'
 
 
 const { store, persistor } = configureStore();
@@ -23,6 +23,7 @@ const App = () => (
       <AddTrafficLight />
       <ChangeAllTrafficLights />
       <LoginForm />
+      <AddPetOwner />
     </PersistGate>
   </Provider>
 );

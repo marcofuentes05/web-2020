@@ -20,7 +20,7 @@ export const failFetchingPetOwners = error => ({
 
 export const startAddingPetOwner = petOwner => ({
   type: types.PET_OWNER_ADD_STARTED,
-  payload: petOwner,
+  payload: {'name': petOwner},
 });
 export const completeAddingPetOwner = (oldId, petOwner) => ({
   type: types.PET_OWNER_ADD_COMPLETED,
