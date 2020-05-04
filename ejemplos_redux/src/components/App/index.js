@@ -11,6 +11,7 @@ import ChangeAllTrafficLights from '../ChangeAllTrafficLights';
 import LoginForm from '../LoginForm';
 import AddPetOwner from '../AddPetOwner'
 import FetchPetOwners from '../FetchPetOwners'
+import ShowPetOwners from '../PetOwners'
 
 const { store, persistor } = configureStore();
 
@@ -25,6 +26,7 @@ const App = () => (
       <LoginForm />
       <AddPetOwner />
       <FetchPetOwners />
+      {/* <ShowPetOwners /> */}
     </PersistGate>
   </Provider>
 );
